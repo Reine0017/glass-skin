@@ -419,10 +419,8 @@
   // ?atlas: plates drawn from the Blender orientation atlas (tools/blender)
   // instead of the painted layers. Cells are indexed by the half-vector in the
   // plate frame; hB < 0 mirrors the sprite across its long axis.
-  // Blender atlas on tablets and up; on phones the atlas glints shrink to dots
-  // and the skin reads dark, so the painted sprites lead there. ?atlas / ?painted force either.
-  var ATLAS_ON = /[?&]atlas\b/.test(location.search) ||
-    (!/[?&]painted\b/.test(location.search) && Math.min(window.innerWidth, window.innerHeight) >= 600);
+  // Blender atlas everywhere; ?painted switches to the procedural sprites
+  var ATLAS_ON = !/[?&]painted\b/.test(location.search);
   var atlasImg = null;
   function atlasLive() { return ATLAS_ON && atlasImg && atlasImg.complete && atlasImg.naturalWidth > 0; }
   if (ATLAS_ON) {
