@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glass skin (v1, July) — a page that sheds</title>
+  <meta name="description" content="The July version of the glass-skin landing-page transition, kept for comparison.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Glass skin (v1, July)">
+  <meta property="og:description" content="The July version of a page that sheds its glass scales, kept for comparison with v2.">
+  <meta property="og:url" content="https://reine0017.github.io/glass-skin/v1/">
+  <meta property="og:image" content="https://reine0017.github.io/glass-skin/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://reine0017.github.io/glass-skin/og.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <noscript><style>.sp-stage{display:none}body.sp-locked{overflow:auto}</style></noscript>
+</head>
+<body class="sp-locked">
+  <div class="sp-stage" id="sp-stage" aria-hidden="true">
+    <canvas id="sp-main"></canvas>
+    <canvas id="sp-grain"></canvas>
+    <div class="sp-vignette"></div>
+    <div class="sp-mark">
+      <h1>glass skin</h1>
+      <p>a page, mid-molt</p>
+    </div>
+    <div class="sp-hint">click to shed</div>
+  </div>
+  <main class="demo">
+    <p class="eyebrow">Underneath · v1</p>
+    <h1>Fresh skin.</h1>
+    <p class="lede">This page wore a skin of glass scales until you touched it. This is the July version, kept so you can compare it with the November rebuild.</p>
+    <div class="actions">
+      <button type="button" class="btn btn-primary" id="again">Shed again</button>
+      <a class="btn" href="../">See the November version</a>
+    </div>
+    <footer class="demo-foot">
+      <span>v1 · July</span>
+      <span>Canvas 2D · no libraries</span>
+    </footer>
+  </main>
+  <script>document.getElementById('again').addEventListener('click', function () { location.reload(); });</script>
+  <script src="main.js"></script>
+</body>
+</html>

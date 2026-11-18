@@ -1,0 +1,102 @@
+/* scales-landing — glass skin demo.
+   The stage is a fixed skin over the real page; canvas colours live in main.js. */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #050608;
+  color: #fffdf9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+body.sp-locked { overflow: hidden; }
+
+/* -- the skin --------------------------------------------------------- */
+.sp-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #07090d;
+  cursor: pointer;
+}
+.sp-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* film grain: reads only where there is luminance (blooms, halos) */
+#sp-grain { mix-blend-mode: overlay; opacity: 0.16; pointer-events: none; transition: opacity 1.2s; }
+
+.sp-vignette {
+  position: absolute; inset: 0; pointer-events: none;
+  transition: opacity 1.2s;
+  background: radial-gradient(120% 140% at 50% 38%, transparent 54%, rgba(2, 4, 9, 0.5) 100%);
+}
+.sp-mark {
+  position: absolute; left: 24px; bottom: 72px; pointer-events: none;
+  color: #fffdf9; transition: opacity 0.3s;
+}
+.sp-mark h1 { margin: 0; font-size: 21px; font-weight: 600; letter-spacing: 0.04em; }
+.sp-mark p { margin: 4px 0 0; font-size: 13px; color: #8fa3b4; }
+.sp-hint {
+  position: absolute; bottom: 14px; left: 0; right: 0; text-align: center;
+  color: #6f879c; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  pointer-events: none; transition: opacity 0.3s;
+  text-shadow: 0 1px 10px rgba(2, 4, 9, 0.9);
+}
+
+/* shedding: petals fall over a live page beneath */
+.sp-stage.sp-shedding { pointer-events: none; background: transparent; cursor: default; }
+.sp-shedding #sp-grain, .sp-shedding .sp-vignette { opacity: 0; }
+.sp-shedding .sp-mark, .sp-shedding .sp-hint { opacity: 0; }
+.sp-stage.sp-gone { display: none; }
+
+/* -- the revealed page: a neutral demo, quiet so the shed owns the stage -- */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+.demo {
+  min-height: 100vh; min-height: 100svh;
+  max-width: 620px; margin: 0 auto; padding: 96px 24px 40px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.demo .eyebrow {
+  margin: 0; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #6f879c;
+}
+.demo h1 {
+  margin: 14px 0 0; font-size: clamp(40px, 7vw, 64px); line-height: 1.02;
+  font-weight: 600; letter-spacing: -0.02em; text-wrap: balance;
+}
+.demo .lede {
+  margin: 18px 0 0; font-size: 16px; line-height: 1.6; color: #a6b6c4; max-width: 52ch; text-wrap: pretty;
+}
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.btn {
+  appearance: none; border: 0; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500;
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 10px;
+  color: #fffdf9; text-decoration: none; background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition-property: background-color, box-shadow, scale; transition-duration: 0.18s;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+.btn:hover { background: rgba(255, 255, 255, 0.07); }
+.btn:active { scale: 0.96; }
+.btn:focus-visible { outline: 2px solid rgba(140, 220, 230, 0.6); outline-offset: 2px; }
+.btn-primary {
+  color: #061012; background: linear-gradient(160deg, #e7d58a, #9fd3c2 55%, #8fb8e8);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 6px 20px -8px rgba(159, 211, 194, 0.5);
+}
+.btn-primary:hover { background: linear-gradient(160deg, #efdf9c, #afdccc 55%, #a0c4ee); }
+.demo-foot {
+  margin-top: auto; padding-top: 64px; display: flex; justify-content: space-between; gap: 16px;
+  font-size: 12.5px; color: #6f879c; font-variant-numeric: tabular-nums;
+}
+
+/* -- reduced motion: no molt, quiet fade ------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .sp-stage { display: none; }
+  body.sp-locked { overflow: auto; }
+  .demo { animation: molt-fade 0.4s ease-out; }
+}
+@keyframes molt-fade { from { opacity: 0; } to { opacity: 1; } }

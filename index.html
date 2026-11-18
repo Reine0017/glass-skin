@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glass skin — a page that sheds</title>
+  <meta name="description" content="A landing-page transition: the page wears a skin of glass scales until you touch it, then sheds it.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Glass skin — a page that sheds">
+  <meta property="og:description" content="Touch it and the page sheds its glass scales. Canvas 2D, no libraries, scales rendered in Blender.">
+  <meta property="og:url" content="https://reine0017.github.io/glass-skin/">
+  <meta property="og:image" content="https://reine0017.github.io/glass-skin/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://reine0017.github.io/glass-skin/og.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <noscript><style>.sp-stage{display:none}body.sp-locked{overflow:auto}</style></noscript>
+</head>
+<body class="sp-locked">
+  <div class="sp-stage" id="sp-stage" aria-hidden="true">
+    <canvas id="sp-main"></canvas>
+    <canvas id="sp-grain"></canvas>
+    <div class="sp-vignette"></div>
+    <div class="sp-mark">
+      <h1>glass skin</h1>
+      <p>a page, mid-molt</p>
+    </div>
+    <div class="sp-hint">click to shed</div>
+  </div>
+  <main class="demo">
+    <p class="eyebrow">Underneath</p>
+    <h1>Fresh skin.</h1>
+    <p class="lede">This page wore a skin of glass scales until you touched it. The body tightened, cracks ran along the seams, and the plates tore free and fell rocking through a single light.</p>
+    <div class="actions">
+      <button type="button" class="btn btn-primary" id="again">Shed again</button>
+      <a class="btn" href="v1/">Compare the July version</a>
+    </div>
+    <footer class="demo-foot">
+      <span>v2 · November</span>
+      <span>Canvas 2D · no libraries</span>
+    </footer>
+  </main>
+  <script>document.getElementById('again').addEventListener('click', function () { location.reload(); });</script>
+  <script src="main.js"></script>
+</body>
+</html>

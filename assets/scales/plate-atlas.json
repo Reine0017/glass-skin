@@ -1,0 +1,203 @@
+{
+  "image": "plate-atlas.png",
+  "imageWebp": "plate-atlas.webp",
+  "cellPx": 320,
+  "unitsPerCell": 72.0,
+  "cols": 9,
+  "rows": 5,
+  "hA": [
+    -0.6,
+    -0.45,
+    -0.3,
+    -0.15,
+    0.0,
+    0.15,
+    0.3,
+    0.45,
+    0.6
+  ],
+  "hB": [
+    0.0,
+    0.15,
+    0.3,
+    0.45,
+    0.6
+  ],
+  "mirrorB": true,
+  "layout": "column = hA ascending (left\u2192right), row = hB ascending (top\u2192bottom)",
+  "alpha": "straight (non-premultiplied), 8-bit sRGB",
+  "frame": "A = sprite +x (toward base/head), B = sprite +y (image down), n = toward camera; V = (0,0,1)",
+  "lightFormula": "H = (hA, hB, sqrt(1-hA^2-hB^2)); L = 2(H.V)H - V; if L.z < 0.05 then L.z = 0.05 and renormalise",
+  "mirrorNote": "for hB < 0 sample the |hB| row and flip the sprite about y = 36",
+  "clampedCells": [
+    {
+      "col": 0,
+      "row": 3,
+      "hA": -0.6,
+      "hB": 0.45,
+      "L": [
+        -0.79899,
+        0.59924,
+        0.05033
+      ],
+      "effectiveH": [
+        -0.55127,
+        0.41345,
+        0.72468
+      ]
+    },
+    {
+      "col": 8,
+      "row": 3,
+      "hA": 0.6,
+      "hB": 0.45,
+      "L": [
+        0.79899,
+        0.59924,
+        0.05033
+      ],
+      "effectiveH": [
+        0.55127,
+        0.41345,
+        0.72468
+      ]
+    },
+    {
+      "col": 0,
+      "row": 4,
+      "hA": -0.6,
+      "hB": 0.6,
+      "L": [
+        -0.70601,
+        0.70601,
+        0.05559
+      ],
+      "effectiveH": [
+        -0.4859,
+        0.4859,
+        0.7265
+      ]
+    },
+    {
+      "col": 1,
+      "row": 4,
+      "hA": -0.45,
+      "hB": 0.6,
+      "L": [
+        -0.59924,
+        0.79899,
+        0.05033
+      ],
+      "effectiveH": [
+        -0.41345,
+        0.55127,
+        0.72468
+      ]
+    },
+    {
+      "col": 7,
+      "row": 4,
+      "hA": 0.45,
+      "hB": 0.6,
+      "L": [
+        0.59924,
+        0.79899,
+        0.05033
+      ],
+      "effectiveH": [
+        0.41345,
+        0.55127,
+        0.72468
+      ]
+    },
+    {
+      "col": 8,
+      "row": 4,
+      "hA": 0.6,
+      "hB": 0.6,
+      "L": [
+        0.70601,
+        0.70601,
+        0.05559
+      ],
+      "effectiveH": [
+        0.4859,
+        0.4859,
+        0.7265
+      ]
+    }
+  ],
+  "light": {
+    "type": "sun",
+    "angularDiameterDeg": 10.0,
+    "strength": 1.0,
+    "worldStrength": 0.02,
+    "horizonBand": "world strength += 0.60 * (1-|z|)^3.0 \u2014 dim horizon glow so the rim keeps a faint line"
+  },
+  "render": {
+    "engine": "CYCLES",
+    "samples": 192,
+    "seed": 7,
+    "device": "GPU (Metal)",
+    "denoiser": "OPENIMAGEDENOISE",
+    "blender": "5.3.0"
+  },
+  "grade": {
+    "exposure": 0.8,
+    "shoulderKnee": 0.55,
+    "peak": 0.94,
+    "whiteBleed": 0.35,
+    "note": "one global grade for all cells; no per-cell normalisation"
+  },
+  "occlusion": {
+    "type": "post-multiply on RGB (not physical)",
+    "startFrac": 0.6,
+    "strengthAtBase": 0.5,
+    "plateXSpanUnits": [
+      12.0,
+      67.503
+    ]
+  },
+  "plate": {
+    "tip": [
+      12.0,
+      36.0
+    ],
+    "baseCorners": [
+      [
+        60.0,
+        8.0
+      ],
+      [
+        60.0,
+        64.0
+      ]
+    ],
+    "arcRadius": 56.0,
+    "thicknessUnits": 4.2,
+    "keelUnits": 0.1
+  },
+  "material": {
+    "bodyOklch": [
+      0.3,
+      0.05,
+      175.0
+    ],
+    "principledSockets": {
+      "Base Color": [
+        0.00596,
+        0.07344,
+        0.05104,
+        1.0
+      ],
+      "Roughness": 0.18,
+      "IOR": 1.52,
+      "Thin Film Thickness": 472.0,
+      "Thin Film IOR": 1.25,
+      "Coat Weight": 0.12,
+      "Coat Roughness": 0.05,
+      "Transmission Weight": 0.0,
+      "Transmission Dispersion Scale": 0.0
+    }
+  }
+}
